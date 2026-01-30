@@ -1,0 +1,21 @@
+.git
+.venv
+__pycache__
+*.pyc
+.pytest_cache
+.python-version
+data/*
+output/*
+models/*
+*.md
+LICENSE
+docs/
+tests/
+config.yaml
+
+# Keep these for uv sync
+!uv.lock
+!pyproject.toml
+!src/
+!entity.map.json
+!README.md

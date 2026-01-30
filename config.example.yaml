@@ -1,0 +1,44 @@
+logging:
+  level: "INFO"
+
+ocr:
+  markdown_ignore_labels:
+    - "number"
+    - "footnote"
+    - "header"
+    - "header_image"
+    - "footer"
+    - "footer_image"
+    - "aside_text"
+    - "text"
+    - "seal"
+    - "chart"
+    - "image"
+    - "figure"
+    - "paragraph_title"
+    - "title"
+    - "header_image"
+    - "footer_image"
+    
+nlp:
+  gliner_model: "urchade/gliner_multi_pii-v1"
+  engine: "spacy"
+  analyzer_lang: "en"
+  models:
+    - lang_code: "en"
+      model_name: "en_core_web_sm"
+
+pii:
+  target_entities:
+    - "CREDIT_CARD"
+    - "EMAIL_ADDRESS"
+    - "PERSON"
+    - "BANK_ACCOUNT_NUMBER"
+    - "DATE_OF_BIRTH"
+    - "LOCATION"
+    - "POSTAL_CODE"
+  custom_deny_list:
+    - "MY LOCALIZED NAME"
+    - "MY LOCALIZED ADDRESS"
+    - "MY LOCALIZED PHONE NUMBER"
+    - "MY LOCALIZED ID NUMBER"

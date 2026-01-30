@@ -1,0 +1,9 @@
+{
+    "person": "PERSON",
+    "email": "EMAIL_ADDRESS",
+    "location": "LOCATION",
+    "credit card number": "CREDIT_CARD",
+    "date of birth": "DATE_OF_BIRTH",
+    "bank account number": "BANK_ACCOUNT_NUMBER",
+    "postal code": "POSTAL_CODE"
+}
