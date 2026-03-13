@@ -56,3 +56,21 @@ class Config:
         """
         with open(self.config_path, "w") as f:
             yaml.dump(self.config, f)
+
+    def validate(self) -> None:
+        """
+        Validate the configuration file.
+        Raises FileNotFoundError if the file does not exist.
+        Raises ValueError if the configuration is missing or malformed.
+        """
+        if not os.path.exists(self.config_path):
+            raise FileNotFoundError(f"Configuration file not found: {self.config_path}")
+
+        if not self.config:
+            raise ValueError(f"Configuration file is empty or malformed: {self.config_path}")
+            
+        required_keys = ["ocr", "nlp", "pii"]
+        missing_keys = [key for key in required_keys if key not in self.config]
+        
+        if missing_keys:
+            raise ValueError(f"Configuration file is missing required top-level keys: {', '.join(missing_keys)}")
