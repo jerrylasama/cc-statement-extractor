@@ -58,3 +58,29 @@ def test_config_save(temp_config_file):
     new_config = Config(temp_config_file)
     assert new_config.get("new.key") == "saved_value"
 
+
+def test_config_not_found():
+    config = Config("nonexistent_path.yaml")
+    assert config.config == {}
+    with pytest.raises(FileNotFoundError):
+        config.validate()
+
+def test_validate_empty_config(tmp_path):
+    empty_file = tmp_path / "empty.yaml"
+    empty_file.touch()
+    config = Config(str(empty_file))
+    with pytest.raises(ValueError, match="empty or malformed"):
+        config.validate()
+
+def test_validate_missing_keys(temp_config_file):
+    config = Config(temp_config_file)
+    with pytest.raises(ValueError, match="missing required top-level keys"):
+        config.validate()
+
+def test_validate_success(tmp_path):
+    config_data = {"ocr": {}, "nlp": {}, "pii": {}}
+    valid_file = tmp_path / "valid.yaml"
+    with open(valid_file, "w") as f:
+        yaml.dump(config_data, f)
+    config = Config(str(valid_file))
+    config.validate()
